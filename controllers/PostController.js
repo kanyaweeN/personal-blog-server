@@ -31,7 +31,7 @@ export const PostController = {
             const result = await PostService.createPost({ title, image, category_id, description, content, status_id })
 
             return res.status(201).json({
-                message: `Post Id ${result.rows[0].id} has been created successfully`,
+                message: `Created post sucessfully`,
                 data: {
                     title,
                     image,
@@ -42,7 +42,9 @@ export const PostController = {
                 },
             });
         } catch (error) {
-            return res.status(500).json({ message: `${error}` });
+            return res.status(500).json({
+                message: "Server could not create post because database connection"
+            });
         }
     },
 };
