@@ -48,7 +48,9 @@ export const PostController = {
             });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: `${error}` });
+            return res.status(500).json({
+                message: "Server could not read post because database connection"
+            });
         }
     },
     async getById(req, res) {
