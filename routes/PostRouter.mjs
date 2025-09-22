@@ -4,7 +4,10 @@ import { PostValidation } from "../middlewares/PostValidation.js"
 
 const postRouter = Router();
 
-postRouter.get("/", PostController.getAll);
 postRouter.post("/", PostValidation.validateProduct, PostController.createPost);
+postRouter.get("/", PostController.getAll);
+postRouter.get("/:id", PostController.getById);
+postRouter.put("/:id", PostController.updateById);
+postRouter.delete("/:id", PostController.deleteById);
 
 export default postRouter;
