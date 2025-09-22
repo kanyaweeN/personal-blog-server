@@ -103,14 +103,6 @@ export const PostRepository = {
         const countResult = await connectionPool.query(queryCount, countValues);
 
         const totalPosts = Number(countResult.rows[0].count);
-        // เช็คว่ามีหน้าถัดไปหรือไม่
-        if (offset + limit < totalPosts) {
-            results.nextPage = page + 1;
-        }
-        // เช็คว่ามีหน้าก่อนหน้าหรือไม่
-        if (offset > 0) {
-            results.previousPage = page - 1;
-        }
 
         const results = {
             totalPosts,
@@ -119,6 +111,15 @@ export const PostRepository = {
             limit: limit,
             posts: result.rows,
         };
+
+        // เช็คว่ามีหน้าถัดไปหรือไม่
+        if (offset + limit < totalPosts) {
+            results.nextPage = page + 1;
+        }
+        // เช็คว่ามีหน้าก่อนหน้าหรือไม่
+        if (offset > 0) {
+            results.previousPage = page - 1;
+        }
 
         return results;
     },
