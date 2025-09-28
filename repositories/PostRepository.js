@@ -123,7 +123,6 @@ export const PostRepository = {
 
         return results;
     },
-
     async getById(id) {
         let query = `
             SELECT 
@@ -163,7 +162,6 @@ export const PostRepository = {
             ]);
     },
     async deleteById(id) {
-
         let query = `
             delete from
                 posts
